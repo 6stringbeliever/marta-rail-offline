@@ -54,6 +54,12 @@ gulp.task('movelibjs-serve', function() {
     .pipe(gulp.dest('dist/js/lib'));
 });
 
+// Move data files
+gulp.task('movedata', function() {
+  return gulp.src('dev/data/*.txt')
+    .pipe(gulp.dest('dist/data'));
+});
+
 // Minify JavaScript
 gulp.task('minifyjs', function() {
   return gulp.src(['bower_components/fetch/**/*.js', 'dev/js/lib/**/*.js', 'dev/js/app/**/*.js'])
@@ -111,7 +117,7 @@ gulp.task('default', ['serve']);
 // Since this is for dev, we don't minify the js for debugging
 gulp.task('serve', function() {
 
-  gulp.start('html-serve', 'js-serve', 'sw-js-serve', 'sass-serve', 'movelibjs-serve', 'moveimages');
+  gulp.start('html-serve', 'js-serve', 'sw-js-serve', 'sass-serve', 'movelibjs-serve', 'moveimages', 'movedata');
 
   browserSync.init({
       server: './dist'
@@ -130,5 +136,5 @@ gulp.task('serve', function() {
 // Prepare for actual dist, clean the directory, then build and minify
 // everything.
 gulp.task('build', ['clean'], function() {
-  gulp.start('moveimages', 'movelibjs', 'sw-js', 'minifyhtml', 'sass', 'minifyjs');
+  gulp.start('moveimages', 'movelibjs', 'movedata', 'sw-js', 'minifyhtml', 'sass', 'minifyjs');
 });

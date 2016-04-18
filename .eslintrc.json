@@ -12,6 +12,8 @@
     "semi": [2, "always"],
     "quotes": [1, "single", "avoid-escape"],
     "no-const-assign": [2],
-    "no-console": [0]
+    "no-console": [0],
+    "no-undef": [0],
+    "no-unused-vars": [1]
   }
 }
