@@ -127,7 +127,7 @@ gulp.task('serve', function() {
   gulp.watch('dev/scss/*.scss', ['sass-serve']);
 
   // Watch js files, lint and move
-  gulp.watch('dev/js/lib/*.js', ['lint', 'js-serve']);
+  gulp.watch('dev/js/**/*.js', ['lint', 'js-serve']);
   gulp.watch('dev/sw.js', ['lint', 'sw-js-serve']);
 
   gulp.watch('dev/**/*.html', ['html-serve']).on('change', browserSync.reload);
