@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app>
+<html lang="en" ng-app="martaOfflineApp">
   <head lang="en">
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -9,9 +9,54 @@
     <link rel="stylesheet" href="css/style.css">
     <script src="js/lib/angular.js"></script>
   </head>
-  <body>
-    <h1>Hello, MARTA World</h1>
-    <p>Nothing here {{'yet' + '!'}}</p>
+  <body ng-controller="StartLineController">
+    <nav class="navbar navbar-full navbar-dark bg-inverse">
+      <div class="container">MARTA Rail Offline</div></nav>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h1>Starting From</h1>
+          <p ng-show="processing">Loading data...</p>
+          <div ng-hide="processing">
+            <button type="button" class="btn btn-primary">Current Location</button>
+            <p>or</p>
+
+            <ul class="list-group">
+              <li class="list-group-item" ng-repeat="route in routes"><span ng-style="{'background': '#' +  route.route_color}" class="label label-default label-pill">{{route.route_short_name}}</span>{{ route.route_long_name }}</li>
+            </ul>
+          </div>
+          <!--
+          <ul class="list-group">
+            <li class="list-group-item line-header">Red Line</li>
+              <ul class="list-group line-list" style="display: none;">
+                <li class="list-group-item">Doraville</li>
+                <li class="list-group-item">Chamblee</li>
+                <li class="list-group-item">Brookhave/Oglethorpe University</li>
+                <li class="list-group-item">Lenox</li>
+                <li class="item-group-item">Lindbergh Center</li>
+                <li class="list-group-item">Arts Center</li>
+                <li class="list-group-item">Midtown</li>
+                <li class="list-group-item">North Avenue</li>
+                <li class="list-group-item">Civic Center</li>
+                <li class="list-group-item">Peachtree Center</li>
+                <li class="list-group-item">Five Points</li>
+                <li class="list-group-item">Garnett</li>
+                <li class="list-group-item">West End</li>
+                <li class="list-group-item">Oakland City</li>
+                <li class="list-group-item">Lakewood/Ft. McPherson</li>
+                <li class="list-group-item">East Point</li>
+                <li class="list-group-item">College Park</li>
+                <li class="list-group-item">Airport</li>
+              </ul>
+            <li class="list-group-item">Gold Line</li>
+            <li class="list-group-item">Blue Line</li>
+            <li class="list-group-item">Green Line</li>
+          </ul>-->
+
+        </div>
+      </div>
+    </div>
+
 
     <script src="js/app.js"></script>
   </body>
