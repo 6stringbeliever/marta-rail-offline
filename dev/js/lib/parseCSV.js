@@ -1,26 +1,26 @@
-class ParseCSV {
+const ParseCSV = function() {
+  'use strict';
 
-  parse(csvString) {
-    this._csvString = csvString;
-    const rows = this._splitDoc(this._csvString);
-    const headers = this._splitLine(rows[0]);
-    return this._createObject(headers, rows);
-  }
+  const parse = function(csvString) {
+    let rows = _splitDoc(csvString);
+    const headers = _splitLine(rows[0]);
+    rows.splice(0, 1);
+    return _createObject(headers, rows);
+  };
 
-  _splitDoc(str) {
+  const _splitDoc = function(str) {
     return str.trim().split('\n');
-  }
+  };
 
-  _splitLine(str) {
+  const _splitLine = function(str) {
     return str.split(',').map((val) => {
       return val.trim();
     });
-  }
+  };
 
-  _createObject(headers, body) {
-    var self = this;
+  const _createObject = function(headers, body) {
     let output = body.map((row, index) => {
-      let data = self._splitLine(row);
+      let data = _splitLine(row);
       let outputObj = {};
       if (data.length !== headers.length) {
         throw new Error(`Row ${index} length does not match header length`);
@@ -31,5 +31,7 @@ class ParseCSV {
       return outputObj;
     });
     return output;
-  }
-}
+  };
+
+  return { parse: parse };
+};
